@@ -3,17 +3,10 @@ let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
 let BookSchema = new Schema({
-  title: { 
-    type: String, 
-    required: true 
-  },
-  author: { 
-    type: Schema.ObjectId, 
-    ref: 'Author', 
-    required: true 
-  },
+  title: { type: String, required: true },
+  author: { type: Schema.ObjectId, ref: 'Author', required: true },
   year: Number, 
-  series: String,
+  series: { type: Schema.ObjectId, ref: 'Series' },
   series_number: Number,
   owned: Boolean,
   finished: Boolean

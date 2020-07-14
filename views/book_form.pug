@@ -18,7 +18,7 @@ block content
             option(value=author._id) #{author.name}
     div.form-group
       label(for='series') Series:
-      input#series.form-control(type='text', placeholder='Name of series' name='seriesTitle' required='true' value=(undefined===series ? '' : series.seriesTitle) )
+      input#series.form-control(type='text', placeholder='Name of series' name='seriesTitle' value=(undefined===series ? '' : series.seriesTitle) )
     button.btn.btn-primary(type='submit') Submit
 
   if errors 
