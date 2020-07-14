@@ -6,21 +6,26 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var catalogRouter = require('./routes/catalog');
+var catalogRouter = require('./routes/catalog'); // import routes for 'catalog' area of site
+// var compression = require('compression');
+// var helmet = require('helmet');
+
 
 var app = express();
+// app.use(helmet());
 
-// connect to db
-let mongoose = require('mongoose');
-let mongoDB = 'mongodb+srv://ksharples431:foXcroft18!@cluster0.whnsc.mongodb.net/audible-library?retryWrites=true&w=majority'
+// connect db
+var mongoose = require('mongoose');
+var mongoDB = 'mongodb+srv://ksharples431:foXcroft18!@cluster0.whnsc.mongodb.net/audible-library?retryWrites=true&w=majority';
 mongoose.connect(mongoDB, { useNewUrlParser: true });
-let db = mongoose.connection;
+var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error: '));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
+// app.use(compression()); //Compress all routes
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -32,12 +37,12 @@ app.use('/users', usersRouter);
 app.use('/catalog', catalogRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};

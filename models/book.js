@@ -3,8 +3,16 @@ let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
 let BookSchema = new Schema({
-  title: { type: String, required: true },
-  author: { type: Schema.ObjectId, ref: 'Author', required: true },
+  title: { 
+    type: String, 
+    required: true 
+  },
+  author: { 
+    type: Schema.ObjectId, 
+    ref: 'Author', 
+    required: true 
+  },
+  year: Number, 
   series: String,
   series_number: Number,
   owned: Boolean,
@@ -14,7 +22,7 @@ let BookSchema = new Schema({
 BookSchema
   .virtual('url')
   .get(function () {
-    return '/catalog/book' + this._id;
+    return '/catalog/book/' + this._id;
   });
 
 

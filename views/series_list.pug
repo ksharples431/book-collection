@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  h1 Series
+  hr
+  ul
+    - series_list.sort(function(a, b) {let textA = a.title.toUpperCase(); let textB = b.title.toUpperCase(); return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;});
+    each series in series_list
+      li 
+        a(href=series.url) #{series.seriesTitle} 
+
+    else
+      li There are no series.

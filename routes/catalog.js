@@ -4,6 +4,7 @@ var router = express.Router();
 // require controllers
 let book_controller = require('../controllers/bookController');
 let author_controller = require('../controllers/authorController');
+let series_controller = require('../controllers/seriesController');
 
 /// BOOK ROUTES ///
 
@@ -45,7 +46,7 @@ router.post('/author/create', author_controller.author_create_post);
 // GET request to delete Author.
 router.get('/author/:id/delete', author_controller.author_delete_get);
 
-// POST request to delete Author.
+// POST request to delete Author
 router.post('/author/:id/delete', author_controller.author_delete_post);
 
 // GET request to update Author.
@@ -59,5 +60,31 @@ router.get('/author/:id', author_controller.author_detail);
 
 // GET request for list of all Authors.
 router.get('/authors', author_controller.author_list);
+
+/// SERIES ROUTES ///
+
+// GET request for creating Series. NOTE This must come before route for id (i.e. display series).
+router.get('/series/create', series_controller.series_create_get);
+
+// POST request for creating Series.
+router.post('/series/create', series_controller.series_create_post);
+
+// GET request to delete Series.
+router.get('/series/:id/delete', series_controller.series_delete_get);
+
+// POST request to delete Series.
+router.post('/series/:id/delete', series_controller.series_delete_post);
+
+// GET request to update Series.
+router.get('/series/:id/update', series_controller.series_update_get);
+
+// POST request to update Series.
+router.post('/series/:id/update', series_controller.series_update_post);
+
+// GET request for one Series.
+router.get('/series/:id', series_controller.series_detail);
+
+// GET request for list of all Series.
+router.get('/series', series_controller.series_list);
 
 module.exports = router;
